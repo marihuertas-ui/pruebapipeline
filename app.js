@@ -4,3 +4,6 @@ console.log("🚀 Aplicación ejecutándose correctamente");
 const suma = (a, b) => a + b;
 
 module.exports = { suma };
+
+
+console.log("Hola profe 😎")
