@@ -1,30 +1,22 @@
-name: Pipeline CI/CD Node.js
+name: Pipeline CI/CD con Docker
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build-test:
+  docker-test:
     runs-on: ubuntu-latest
 
     steps:
     - name: 📥 Descargar código
       uses: actions/checkout@v4
 
-    - name: 🟢 Instalar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+    - name: 🐳 Construir imagen Docker
+      run: docker build -t mi-app .
 
-    - name: 📦 Instalar dependencias
-      run: npm install
+    - name: 🚀 Ejecutar contenedor
+      run: docker run mi-app
 
-    - name: 🚀 Ejecutar aplicación
-      run: npm start
-
-    - name: 🧪 Ejecutar tests
-      run: npm test
-
-    - name: 📅 Mostrar fecha
-      run: date
+    - name: 🧪 Ejecutar test dentro del contenedor
+      run: docker run mi-app node test.js
