@@ -1,30 +1,24 @@
-name: Pipeline CI/CD Node.js
+name: Pipeline CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "principal" ]
 
 jobs:
-  build-test:
+  ejecutar:
     runs-on: ubuntu-latest
 
     steps:
     - name: 📥 Descargar código
       uses: actions/checkout@v4
 
-    - name: 🟢 Instalar Node.js
+    - name: 🟢 Instalar Node
       uses: actions/setup-node@v4
       with:
         node-version: '18'
 
-    - name: 📦 Instalar dependencias
-      run: npm install
+    - name: 🚀 Ejecutar app
+      run: node app.js
 
-    - name: 🚀 Ejecutar aplicación
-      run: npm start
-
-    - name: 🧪 Ejecutar tests
-      run: npm test
-
-    - name: 📅 Mostrar fecha
-      run: date
+    - name: 🧪 Ejecutar test
+      run: node test.js
