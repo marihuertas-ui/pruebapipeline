@@ -1,1 +1,25 @@
 
+name: Pipeline CI/CD
+
+on:
+  push:
+    branches: [ "principal" ]
+
+jobs:
+  ejecutar:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Descargar código
+      uses: actions/checkout@v4
+
+    - name: 🟢 Instalar Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: 🚀 Ejecutar app
+      run: node app.js
+
+    - name: 🧪 Ejecutar test
+      run: node test.js
